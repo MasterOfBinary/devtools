@@ -27,5 +27,5 @@ popd > /dev/null
 echook
 
 echo
-echoinfo "Run zsh to see the updated zsh!"
+echoinfo "Run zsh or log out and log in to see the updated zsh!"
 
