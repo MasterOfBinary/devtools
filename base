@@ -12,6 +12,19 @@ function echook {
 	echosuccess "OK"
 }
 
+function backup {
+	if [ "$DT_BACKUP" == "true" ]; then
+		if [ -f "$1" ]; then
+			mv "$1" "$1.old"
+		fi
+	fi
+}
+
+# Exit if any command fails
+set -e
+
+. ./config
+
 if [ -f /etc/os-release ]; then
 	distro=$(cat /etc/os-release | grep "^ID=" | sed 's/ID=//g')
 else
@@ -26,8 +39,18 @@ case $distro in
 		;;
 	*)
 		echo
-		echoerr "Unknown distro, exiting :("
+		echoerr "Unknown distro, exiting."
 		exit 1
 		;;
 esac
+
+if [[ "$DT_BACKUP" == t* ]]; then
+	DT_BACKUP="true"
+elif [[ "$DT_BACKUP" == f* ]]; then
+	DT_BACKUP="false"
+else
+	echo
+	echoerr "Unknown value for DT_BACKUP, exiting."
+	exit 1
+fi
 
