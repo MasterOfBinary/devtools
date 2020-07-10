@@ -1,5 +1,5 @@
 .PHONY: all
-all: zsh vim
+all: zsh vim screen
 
 .PHONY: zsh
 zsh: ## Installs oh-my-zsh with powerline10k theme and config files.
@@ -8,6 +8,10 @@ zsh: ## Installs oh-my-zsh with powerline10k theme and config files.
 .PHONY: vim
 vim: ## Sets up vim with plugins and config files.
 	@./vim.sh
+
+.PHONY: screen
+screen: ## Sets up screen.
+	@./screen.sh
 
 .PHONY: help
 help: ## Shows help.

@@ -1,6 +1,6 @@
 # devtools
 
-Prereq: install unzip, vim, zsh, git, sudo, make, wget update all packages (e.g. apt-get update). Setup git email and username and ssh creds for github. Make sure zsh is current shell.
+Prereq: install screen, unzip, vim, zsh, git, sudo, make, wget update all packages (e.g. apt-get update). Setup git email and username and ssh creds for github. Make sure zsh is current shell.
 
 On ubuntu:
 
