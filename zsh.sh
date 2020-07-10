@@ -26,3 +26,6 @@ popd > /dev/null
 
 echook
 
+echo
+echoinfo "Run zsh to see the updated zsh!"
+
