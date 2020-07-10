@@ -2,8 +2,17 @@ execute pathogen#infect()
 
 " http://dougblack.io/words/a-good-vimrc.html
 
+" Gruvbox stuff
+set bg=dark
+set termguicolors
+
+" For vim-airline
+set laststatus=2
+set ttimeoutlen=50
+let g:airline_theme='gruvbox'
+
 " Colours
-colorscheme badwolf     " awesome colorscheme
+colorscheme gruvbox     " awesome colorscheme
 syntax enable           " enable syntax processing
 
 " Spaces & Tabs
@@ -81,3 +90,6 @@ let mapleader = ","
 
 " Turn off cursor line on Debian
 set nocursorline
+
+" Set utf-8 encoding
+set encoding=utf-8
