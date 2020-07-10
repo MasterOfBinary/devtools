@@ -5,16 +5,24 @@ set -e
 
 . base
 
-echo -n "Installing zsh... "
+echo "Installing zsh..."
 
-pushd zsh
-
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+pushd zsh > /dev/null
 
 backup "$HOME/.zshrc"
-cp zshrc "$HOME/.zshrc"
+backup "$HOME/.p10k.zsh"
 
-popd
+# Install oh-my-zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# Install powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# Copy config files
+cp zshrc "$HOME/.zshrc"
+cp p10k.zsh "$HOME/.p10k.zsh"
+
+popd > /dev/null
 
 echook
 
