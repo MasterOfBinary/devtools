@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+function echoerr {
+	echo -e "\e[31m$1\e[39m"
+}
+
+function echosuccess {
+	echo -e "\e[32m$1\e[39m"
+}
+
+function echook {
+	echosuccess "OK"
+}
+
+if [ -f /etc/os-release ]; then
+	distro=$(cat /etc/os-release | grep "^ID=" | sed 's/ID=//g')
+else
+	distro="unknown"
+fi
+
+case $distro in
+
+	arch)
+		;;
+	ubuntu)
+		;;
+	*)
+		echo
+		echoerr "Unknown distro, exiting :("
+		exit 1
+		;;
+esac
+
