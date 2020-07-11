@@ -1,4 +1,4 @@
-# devtools
+# Devtools
 
 ## About
 
@@ -27,7 +27,7 @@ First, make sure to install the following using your OS's package manager:
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure zsh is your default shell (but
 there's no need to run the first start because the zshrc will be overwritten by devtools.
 
-Instructions are available below for Ubuntu.
+Instructions are available below for [Ubuntu](#ubuntu).
 
 ### Ubuntu
 
@@ -65,4 +65,3 @@ Go to the devtools directory and run make to install everything, or `make help` 
 cd devtools
 make
 ```
-
