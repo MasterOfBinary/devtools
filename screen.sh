@@ -5,7 +5,7 @@ set -e
 
 . base
 
-echo "Installing screen..."
+echosuccess "Installing screen..."
 
 mkdir -p "$HOME/.screen"
 chmod 0700 "$HOME/.screen"
