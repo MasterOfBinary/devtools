@@ -1,30 +1,68 @@
 # devtools
 
-Prereq: install screen, unzip, vim, zsh, git, sudo, make, wget update all packages (e.g. apt-get update). Setup git email and username and ssh creds for github. Make sure zsh is current shell.
+## About
 
-On ubuntu:
+I put together this repo because I always have trouble setting up new development environments, which I find myself doing quite often for
+testing or just to check out a new Linux distro. This set of scripts can be run to give me the exact same environment every time.
 
-Install prereqs:
+Feel free to take it and modify it for your own use-case, but I would highly recommend not to use it as-is because it's specific to my own
+workflow and it's better to customize your own environment.
 
+I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well,
+but I haven't tested it and may never do so.
+
+## Install
+
+First, make sure to install the following using your OS's package manager:
+
+* `screen`
+* `unzip`
+* `vim`
+* `zsh`
+* `git`
+* `sudo`
+* `make`
+* `wget`
+
+Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure zsh is your default shell (but
+there's no need to run the first start because the zshrc will be overwritten by devtools.
+
+Instructions are available below for Ubuntu.
+
+### Ubuntu
+
+Install prereqs first, devtools will not install them for you:
+
+```
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install vim zsh git make wget
+```
 
+Generate keys by running these commands and following the instructions:
+
+```
 ssh-keygen -t rsa -b 4096 -C "youremail@youremail.com"
-Follow instructions.
-
 cat ~/.ssh/id_rsa.pub
+```
 
-Copy and paste to github.
+Copy and paste the output of `cat` to github. Now we can clone the devtools repo:
 
+```
 git clone git@github.com:MasterOfBinary/devtools.git
-Yes, continue connecting.
+```
 
 Set default shell:
 
+```
 chsh -s /bin/zsh
+```
 
-Logout and login.
-Quit the new shell setup - shell setup will be overwritten by this application.
+Logout and login. Quit the new shell setup that opens when you first start zsh - shell setup will be overwritten by this application.
 
+Go to the devtools directory and run make to install everything, or `make help` to see which components can be installed.
+
+```
 cd devtools
 make
+```
+

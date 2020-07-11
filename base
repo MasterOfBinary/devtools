@@ -24,6 +24,12 @@ function backup {
 	fi
 }
 
+function try_clone {
+    if [ ! -d "$2" ]; then
+            git clone "$1" "$2"
+    fi
+}
+
 # Exit if any command fails
 set -e
 
