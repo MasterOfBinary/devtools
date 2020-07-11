@@ -32,4 +32,5 @@ echook
 
 echo
 echoinfo "Make sure to run :Helptags after opening vim!"
+echo
 

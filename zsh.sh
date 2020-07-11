@@ -34,4 +34,5 @@ echook
 
 echo
 echoinfo "Run zsh or log out and log in to see the updated zsh!"
+echo
 
