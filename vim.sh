@@ -18,15 +18,20 @@ cp vimrc "$HOME/.vimrc"
 
 popd > /dev/null
 
+bundle="$HOME/.vim/bundle"
+
 # Install vim-airline and vim-airline-themes
-git clone https://github.com/vim-airline/vim-airline "$HOME/.vim/bundle/vim-airline"
-git clone https://github.com/vim-airline/vim-airline-themes "$HOME/.vim/bundle/vim-airline-themes"
+try_clone https://github.com/vim-airline/vim-airline "$bundle/vim-airline"
+try_clone https://github.com/vim-airline/vim-airline-themes "$bundle/vim-airline-themes"
 
 # Install gruvbox colour scheme
-git clone https://github.com/morhetz/gruvbox "$HOME/.vim/bundle/gruvbox"
+try_clone https://github.com/morhetz/gruvbox "$bundle/gruvbox"
 
 # Install vim-go
-git clone https://github.com/fatih/vim-go.git "$HOME/.vim/bundle/vim-go"
+try_clone https://github.com/fatih/vim-go.git "$bundle/vim-go"
+
+# Install vim-markdown
+try_clone https://github.com/plasticboy/vim-markdown.git "$bundle/vim-markdown"
 
 echook
 
