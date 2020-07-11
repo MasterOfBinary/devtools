@@ -5,15 +5,12 @@ set -e
 
 . base
 
-echo "Installing zsh..."
+echosuccess "Installing zsh..."
 
 pushd zsh > /dev/null
 
-backup "$HOME/.zshrc"
-backup "$HOME/.p10k.zsh"
-
 # Install oh-my-zsh
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sh -c "$(wget  -q --show-progress -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install powerlevel10k theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -22,10 +19,16 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # Copy config files
+backup "$HOME/.zshrc"
 cp zshrc "$HOME/.zshrc"
+backup "$HOME/.p10k.zsh"
 cp p10k.zsh "$HOME/.p10k.zsh"
 
 popd > /dev/null
+
+# Install z
+mkdir -p "$DT_DIR"
+wget  -q --show-progress -O "$DT_DIR/z.sh" https://raw.githubusercontent.com/rupa/z/master/z.sh
 
 echook
 

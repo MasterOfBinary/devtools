@@ -5,11 +5,11 @@ set -e
 
 . base
 
-echo "Installing vim..."
+echosuccess "Installing vim..."
 
 mkdir -p "$HOME/.vim/autoload" "$HOME/.vim/bundle"
 
-wget -O "$HOME/.vim/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
+wget -q --show-progress -O "$HOME/.vim/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
 
 pushd vim > /dev/null
 

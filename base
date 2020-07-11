@@ -36,7 +36,6 @@ else
 fi
 
 case $distro in
-
 	arch)
 		;;
 	ubuntu)
@@ -58,3 +57,4 @@ else
 	exit 1
 fi
 
+DT_DIR="$HOME/.devtools"
