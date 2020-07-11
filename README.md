@@ -1,18 +1,14 @@
 # Devtools
 
-Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `vim` and `zsh`) in a newly installed Linux system
-so I have a consistent development environment every time.
+Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `vim` and `zsh`) in a newly installed Linux system so I have a consistent development environment every time.
 
 ## About
 
-I put together this repo because I always have trouble setting up new development environments, which I find myself doing quite often for
-testing or just to check out a new Linux distro. This set of scripts can be run to give me the exact same environment every time.
+I put together this repo because I always have trouble setting up new development environments, which I find myself doing quite often for testing or just to check out a new Linux distro. This set of scripts can be run to give me the exact same environment every time.
 
-Feel free to take it and modify it for your own use-case, but I would highly recommend not to use it as-is because it's specific to my own
-workflow and it's better to customize your own environment.
+Feel free to take it and modify it for your own use-case, but I would highly recommend not to use it as-is because it's specific to my own workflow and it's better to customize your own environment.
 
-I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well,
-but I haven't tested it and have no plans to do so.
+I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well, but I haven't tested it and have no plans to do so.
 
 Currently the following tools are setup:
 
@@ -56,23 +52,54 @@ ssh-keygen -t rsa -b 4096 -C "youremail@youremail.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
-Copy and paste the output of `cat` to github. Now we can clone the devtools repo:
+Copy and paste the output of `cat` to github.
 
-```
-git clone git@github.com:MasterOfBinary/devtools.git
-```
-
-Set default shell:
+Set default shell to `zsh`:
 
 ```
 chsh -s /bin/zsh
 ```
 
-Logout and login. Quit the new shell setup that opens when you first start zsh - shell setup will be overwritten by this application.
+Logout and login to use the new shell. Quit the new shell setup that opens when you first start zsh - shell setup will be overwritten by this application.
 
+Proceed to the section on [Running](#running).
 Go to the devtools directory and run make to install everything, or `make help` to see which components can be installed.
+
+## Running
+
+Clone the devtools repo:
+
+```
+git clone git@github.com:MasterOfBinary/devtools.git
+```
+
+Devtools needs to be run from its directory (i.e. the directory with the `Makefile`):
 
 ```
 cd devtools
+```
+
+Use `make` to install everything. No superuser privileges are required:
+
+```
 make
+```
+
+You can use `make help` to get a list of `make` targets:
+
+```
+Usage:
+    make <target>
+
+Targets:
+    help                           Shows help.
+    screen                         Sets up screen.
+    vim                            Sets up vim with plugins and config files.
+    zsh                            Installs oh-my-zsh with powerline10k theme and config files.
+```
+
+For example, to just setup screen, run:
+
+```
+make screen
 ```
