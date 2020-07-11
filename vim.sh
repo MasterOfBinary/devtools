@@ -33,6 +33,9 @@ try_clone https://github.com/fatih/vim-go.git "$bundle/vim-go"
 # Install vim-markdown
 try_clone https://github.com/plasticboy/vim-markdown.git "$bundle/vim-markdown"
 
+# Install NERDTree
+try_clone https://github.com/preservim/nerdtree.git "$bundle/nerdtree"
+
 echook
 
 echo
