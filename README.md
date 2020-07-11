@@ -1,5 +1,8 @@
 # Devtools
 
+Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `vim` and `zsh`) in a newly installed Linux system
+so I have a consistent development environment every time.
+
 ## About
 
 I put together this repo because I always have trouble setting up new development environments, which I find myself doing quite often for
@@ -9,11 +12,19 @@ Feel free to take it and modify it for your own use-case, but I would highly rec
 workflow and it's better to customize your own environment.
 
 I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well,
-but I haven't tested it and may never do so.
+but I haven't tested it and have no plans to do so.
+
+Currently the following tools are setup:
+
+* `zsh` with `oh-my-zsh` and the `powerline10k` theme.
+* `vim` with `gruvbox` theme and support for Golang.
+* `screen` with some basic changes to its look.
+
+I will probably add more in the future, like Go or Docker.
 
 ## Install
 
-First, make sure to install the following using your OS's package manager:
+First, make sure to install the following packages using your OS's package manager:
 
 * `screen`
 * `unzip`
@@ -24,7 +35,7 @@ First, make sure to install the following using your OS's package manager:
 * `make`
 * `wget`
 
-Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure zsh is your default shell (but
+Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but
 there's no need to run the first start because the zshrc will be overwritten by devtools.
 
 Instructions are available below for [Ubuntu](#ubuntu).
