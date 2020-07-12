@@ -1,11 +1,6 @@
 # Devtools
 
-<<<<<<< HEAD
-Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `nvim` and `zsh`) in a newly installed Linux system
-so I have a consistent development environment every time.
-=======
-Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `vim` and `zsh`) in a newly installed Linux system so I have a consistent development environment every time.
->>>>>>> 84004a4434dfeedc8efa749be6d667c1421465cd
+Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `nvim` and `zsh`) in a newly installed Linux system so I have a consistent development environment every time.
 
 ## About
 
