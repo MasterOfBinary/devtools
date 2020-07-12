@@ -77,15 +77,6 @@ Proceed to the section on [Running](#running).
 
 ## Running
 
-For now, the repo is private, so generate keys by running these commands and following the instructions:
-
-```
-ssh-keygen -t rsa -b 4096 -C "youremail@youremail.com"
-cat ~/.ssh/id_rsa.pub
-```
-
-Copy and paste the output of `cat` to github.
-
 Clone the devtools repo:
 
 ```
@@ -112,8 +103,8 @@ Usage:
 
 Targets:
     help                           Shows help.
+    nvim                           Sets up nvim with plugins and config files.
     screen                         Sets up screen.
-    vim                            Sets up vim with plugins and config files.
     zsh                            Installs oh-my-zsh with powerline10k theme and config files.
 ```
 
