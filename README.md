@@ -1,6 +1,6 @@
 # Devtools
 
-Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `vim` and `zsh`) in a newly installed Linux system
+Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `nvim` and `zsh`) in a newly installed Linux system
 so I have a consistent development environment every time.
 
 ## About
@@ -17,7 +17,7 @@ but I haven't tested it and have no plans to do so.
 Currently the following tools are setup:
 
 * `zsh` with `oh-my-zsh` and the `powerline10k` theme.
-* `vim` with `gruvbox` theme and support for Golang.
+* `nvim` with `gruvbox` theme and support for Golang.
 * `screen` with some basic changes to its look.
 
 I will probably add more in the future, like Go or Docker.
@@ -28,7 +28,7 @@ First, make sure to install the following packages using your OS's package manag
 
 * `screen`
 * `unzip`
-* `vim`
+* `nvim`
 * `zsh`
 * `git`
 * `sudo`
@@ -46,7 +46,7 @@ Install prereqs first, devtools will not install them for you:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install vim zsh git make wget
+sudo apt-get install nvim zsh git make wget
 ```
 
 Generate keys by running these commands and following the instructions:

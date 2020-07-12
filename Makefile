@@ -1,13 +1,13 @@
 .PHONY: all
-all: zsh vim screen
+all: zsh nvim screen
 
 .PHONY: zsh
 zsh: ## Installs oh-my-zsh with powerline10k theme and config files.
 	@./zsh.sh
 
-.PHONY: vim
-vim: ## Sets up vim with plugins and config files.
-	@./vim.sh
+.PHONY: nvim
+nvim: ## Sets up nvim with plugins and config files.
+	@./nvim.sh
 
 .PHONY: screen
 screen: ## Sets up screen.
