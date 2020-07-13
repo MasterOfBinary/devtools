@@ -36,3 +36,6 @@ source "$DT_DIR/z.sh"
 
 # Set nvim as default editor
 export EDITOR=nvim
+
+# Some aliases
+alias t='task'
