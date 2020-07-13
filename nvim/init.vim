@@ -38,11 +38,7 @@ set expandtab       " tabs are spaces
 set number                " show line numbers
 set showcmd               " show command in bottom bar
 set cursorline            " highlight current line
-<<<<<<< HEAD:nvim/init.vim
 filetype plugin indent on " load filetype-specific indent and plugin files
-=======
-filetype plugin indent on " load filetype-specific indent files
->>>>>>> 84004a4434dfeedc8efa749be6d667c1421465cd:vim/vimrc
 set wildmenu              " visual autocomplete for command menu
 set lazyredraw            " redraw only when we need to.
 set showmatch             " highlight matching [{()}]
