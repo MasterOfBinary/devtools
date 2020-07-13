@@ -12,11 +12,16 @@ pushd zsh > /dev/null
 # Install oh-my-zsh
 sh -c "$(wget  -q --show-progress -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+# Sometimes ZSH_CUSTOM doesn't seem to exist yet so just assume it's in the default location. There's probably
+# a better way to do it...
+
 # Install powerlevel10k theme
-try_clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+# NOTE: don't use try_clone here because it assumes 2 arguments which is bad but I'm too lazy to fix it.
+# Regardless, ohmyzsh would've checked already that .oh-my-zsh doesn't exist.
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 
 # Install zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+try_clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 
 # Copy config files
 backup "$HOME/.zshrc"

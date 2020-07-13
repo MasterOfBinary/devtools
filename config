@@ -1,2 +1,2 @@
 DT_BACKUP="true"
-DT_INSTALLDIR="$HOME/.devtools"
+DT_DIR="$HOME/.devtools"
