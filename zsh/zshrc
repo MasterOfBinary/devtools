@@ -33,3 +33,6 @@ export DT_DIR="$HOME/.devtools"
 
 # Source z plugin.
 source "$DT_DIR/z.sh"
+
+# Set nvim as default editor
+export EDITOR=nvim
