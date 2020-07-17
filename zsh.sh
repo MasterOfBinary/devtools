@@ -23,6 +23,9 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-z
 # Install zsh-autosuggestions
 try_clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 
+# Install zsh-autosuggestions
+try_clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"
+
 # Copy config files
 backup "$HOME/.zshrc"
 cp zshrc "$HOME/.zshrc"

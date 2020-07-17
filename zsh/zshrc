@@ -18,6 +18,7 @@ plugins=(
         history
         sudo
         z
+        zsh-completions
 )
 
 # oh-my-zsh stuff.
@@ -39,3 +40,6 @@ export EDITOR=nvim
 
 # Some aliases
 alias t='task'
+alias ta='task add'
+tm() { task "$1" modify "${@:2}" }
+td() { task "$1" done }
