@@ -62,7 +62,7 @@ Install the prereqs first, devtools will not install them for you:
 
 ```
 brew update && brew upgrade
-brew install vim git make wget screen
+brew install nvim git make wget screen
 ```
 
 Set default shell to `zsh`:
@@ -113,3 +113,10 @@ For example, to just setup screen, run:
 ```
 make screen
 ```
+
+## Other
+
+I like to set my terminal theme to the gruvbox theme, the same theme I'm using for `nvim`. For iterm2, download the theme at https://github.com/herrbischoff/iterm2-gruvbox and import it.
+
+You'll also need powerline fonts for your terminal, otherwise some weird symbols will show up. My preference is Mononoki Nerd Font from https://www.nerdfonts.com/.
+
