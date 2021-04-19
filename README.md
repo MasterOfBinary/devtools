@@ -41,7 +41,7 @@ Install prereqs first, devtools will not install them for you:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install nvim zsh git make wget unzip screen
+sudo apt-get install neovim zsh git make wget unzip screen
 ```
 
 Set default shell to `zsh`:
