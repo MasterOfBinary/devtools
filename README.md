@@ -8,7 +8,7 @@ I put together this repo because I always have trouble setting up new developmen
 
 Feel free to take it and modify it for your own use-case, but I would highly recommend not to use it as-is because it's specific to my own workflow and it's better to customize your own environment.
 
-I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well, but I haven't tested it and have no plans to do so.
+I've used devtools on Ubuntu, ArchLinux, and Mac OS X. It may work for other Linux distros as well, but I haven't tested it and have no plans to do so.
 
 Currently the following tools are setup:
 
