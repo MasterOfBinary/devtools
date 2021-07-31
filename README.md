@@ -8,7 +8,7 @@ I put together this repo because I always have trouble setting up new developmen
 
 Feel free to take it and modify it for your own use-case, but I would highly recommend not to use it as-is because it's specific to my own workflow and it's better to customize your own environment.
 
-I've used devtools on Ubuntu and ArchLinux, and will likely do so in Mac OS X in the future. It may work for other Linux distros as well, but I haven't tested it and have no plans to do so.
+I've used devtools on Ubuntu, ArchLinux, and Mac OS X. It may work for other Linux distros as well, but I haven't tested it and have no plans to do so.
 
 Currently the following tools are setup:
 
@@ -32,7 +32,7 @@ First, make sure to install the following packages using your OS's package manag
 * `make`
 * `wget`
 
-You can install Go using your package manager or, for more up-to-date version, from [https://golang.org/dl/].
+You can install Go using your package manager or, for more up-to-date version, from https://golang.org/dl/.
 
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
 
@@ -47,7 +47,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip screen
 ```
 
-Download and install Go from [https://golang.org/dl/].
+Download and install Go from https://golang.org/dl/.
 
 Set default shell to `zsh`:
 
@@ -61,7 +61,7 @@ Proceed to the section on [Running](#running).
 
 ### Mac OS X
 
-On OS X Catalina, `zsh` will already be installed. If it's not, you should be able to install it with Homebrew (`brew install zsh`).
+On OS X Catalina or later, `zsh` will already be installed. If it's not, you should be able to install it with Homebrew (`brew install zsh`).
 
 Install the prereqs first, devtools will not install them for you:
 
@@ -70,7 +70,7 @@ brew update && brew upgrade
 brew install nvim git make wget screen
 ```
 
-Download and install Go from [https://golang.org/dl/].
+Download and install Go from https://golang.org/dl/.
 
 Set default shell to `zsh`:
 
