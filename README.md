@@ -61,7 +61,7 @@ Proceed to the section on [Running](#running).
 
 ### Mac OS X
 
-On OS X Catalina, `zsh` will already be installed. If it's not, you should be able to install it with Homebrew (`brew install zsh`).
+On OS X Catalina or later, `zsh` will already be installed. If it's not, you should be able to install it with Homebrew (`brew install zsh`).
 
 Install the prereqs first, devtools will not install them for you:
 
