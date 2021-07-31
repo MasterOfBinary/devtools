@@ -8,4 +8,4 @@ DT_DIR="$HOME/.devtools"
 DT_GOPATH="$HOME/go"
 
 # Package for private git repos. See "go help environment" for details. Can be empty.
-DT_GOPRIVATE="github.com/MasterOfBinary/*"
+#DT_GOPRIVATE="github.com/MasterOfBinary/*"
