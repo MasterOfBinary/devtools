@@ -1,6 +1,6 @@
 # Devtools
 
-Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `nvim` and `zsh`) in a newly installed Linux system so I have a consistent development environment every time.
+Devtools contains a makefile and a set of scripts for setting up my common dev tools (like `nvim` and `zsh`) in a newly installed Linux / Mac system so I have a consistent development environment every time. Currently it's mainly for setting things up for Go development.
 
 ## About
 
@@ -15,8 +15,9 @@ Currently the following tools are setup:
 * `zsh` with `oh-my-zsh` and the `powerline10k` theme.
 * `nvim` with `gruvbox` theme and support for Golang.
 * `screen` with some basic changes to its look.
+* `go` with configurable directory structure.
 
-I will probably add more in the future, like Go or Docker.
+I will probably add more in the future, like Docker.
 
 ## Install
 
@@ -31,6 +32,8 @@ First, make sure to install the following packages using your OS's package manag
 * `make`
 * `wget`
 
+You can install Go using your package manager or, for more up-to-date version, from [https://golang.org/dl/].
+
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
 
 Instructions are available below for [Ubuntu](#ubuntu) and [Mac OS X](#mac-os-x).
@@ -43,6 +46,8 @@ Install prereqs first, devtools will not install them for you:
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip screen
 ```
+
+Download and install Go from [https://golang.org/dl/].
 
 Set default shell to `zsh`:
 
@@ -64,6 +69,8 @@ Install the prereqs first, devtools will not install them for you:
 brew update && brew upgrade
 brew install nvim git make wget screen
 ```
+
+Download and install Go from [https://golang.org/dl/].
 
 Set default shell to `zsh`:
 
@@ -102,6 +109,7 @@ Usage:
     make <target>
 
 Targets:
+    go                             Sets up go directories.
     help                           Shows help.
     nvim                           Sets up nvim with plugins and config files.
     screen                         Sets up screen.
