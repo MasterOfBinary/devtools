@@ -43,3 +43,4 @@ alias t='task'
 alias ta='task add'
 tm() { task "$1" modify "${@:2}" }
 td() { task "$1" done }
+

@@ -1,3 +1,11 @@
+# Backup files (such as dot files) before overwriting them.
 DT_BACKUP="true"
+
+# Directory to install binaries needed for devtools installation.
 DT_DIR="$HOME/.devtools"
+
+# Directory for Go src directory.
 DT_GOPATH="$HOME/go"
+
+# Package for private git repos. See "go help environment" for details. Can be empty.
+DT_GOPRIVATE="github.com/MasterOfBinary/*"
