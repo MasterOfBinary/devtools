@@ -1,2 +1,3 @@
 DT_BACKUP="true"
 DT_DIR="$HOME/.devtools"
+DT_GOPATH="$HOME/go"

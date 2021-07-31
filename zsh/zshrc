@@ -5,11 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Allow local binaries to be added to ~/.local/bin.
-export PATH="$HOME/.local/bin:$PATH"
+# Allow local binaries to be added to ~/.local/bin and add Go bin path.
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Path to Go directory.
+export GOPATH="$DT_GOPATH"
 
 plugins=(
         git
