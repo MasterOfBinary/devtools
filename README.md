@@ -96,6 +96,8 @@ Devtools needs to be run from its directory (i.e. the directory with the `Makefi
 cd devtools
 ```
 
+Edit the `config` file to your liking. You may be fine with the defaults.
+
 Use `make` to install everything. No superuser privileges are required:
 
 ```
