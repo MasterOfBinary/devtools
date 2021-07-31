@@ -32,7 +32,7 @@ First, make sure to install the following packages using your OS's package manag
 * `make`
 * `wget`
 
-You can install Go using your package manager or, for more up-to-date version, from [https://golang.org/dl/].
+You can install Go using your package manager or, for more up-to-date version, from https://golang.org/dl/.
 
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
 
@@ -47,7 +47,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip screen
 ```
 
-Download and install Go from [https://golang.org/dl/].
+Download and install Go from https://golang.org/dl/.
 
 Set default shell to `zsh`:
 
@@ -70,7 +70,7 @@ brew update && brew upgrade
 brew install nvim git make wget screen
 ```
 
-Download and install Go from [https://golang.org/dl/].
+Download and install Go from https://golang.org/dl/.
 
 Set default shell to `zsh`:
 
