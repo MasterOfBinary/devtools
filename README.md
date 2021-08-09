@@ -130,3 +130,14 @@ I like to set my terminal theme to the gruvbox theme, the same theme I'm using f
 
 You'll also need powerline fonts for your terminal, otherwise some weird symbols will show up. My preference is Mononoki Nerd Font from https://www.nerdfonts.com/.
 
+Also, I install `screenfetch` when zsh starts up. On Ubuntu, install it as follows:
+
+1. Run `sudo apt-get install screenfetch`.
+2. Remove execute permissions from all files in `/etc/update-motd.d` to hide all the other message of the days.
+3. Create new file `/etc/update-motd.d/00-header-new` with execute permissions.
+
+Add the following to the new `00-header-new` file:
+
+```#!/bin/sh
+
+screenfetch```
