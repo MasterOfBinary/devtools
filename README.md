@@ -138,6 +138,8 @@ Also, I install `screenfetch` when zsh starts up. On Ubuntu, install it as follo
 
 Add the following to the new `00-header-new` file:
 
-```#!/bin/sh
+```
+#!/bin/sh
 
-screenfetch```
+screenfetch
+```
