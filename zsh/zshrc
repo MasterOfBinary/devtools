@@ -44,3 +44,9 @@ alias ta='task add'
 tm() { task "$1" modify "${@:2}" }
 td() { task "$1" done }
 
+# Kubernetes
+alias k=kubectl
+source <(kubectl completion zsh)
+
+# Turn off auto-pushd
+unsetopt autopushd
