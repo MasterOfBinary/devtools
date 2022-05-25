@@ -31,6 +31,7 @@ First, make sure to install the following packages using your OS's package manag
 * `sudo`
 * `make`
 * `wget`
+* `kubectl`
 
 You can install Go using your package manager or, for more up-to-date version, from https://golang.org/dl/.
 
@@ -46,6 +47,8 @@ Install prereqs first, devtools will not install them for you:
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip screen
 ```
+
+Install `kubectl` by following https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/.
 
 Download and install Go from https://golang.org/dl/.
 
@@ -67,7 +70,7 @@ Install the prereqs first, devtools will not install them for you:
 
 ```
 brew update && brew upgrade
-brew install nvim git make wget screen
+brew install nvim git make wget screen kubectl
 ```
 
 Download and install Go from https://golang.org/dl/.
