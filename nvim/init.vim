@@ -83,8 +83,10 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 " Run goimports when saving
 let g:go_fmt_command = "goimports"
 
-" Run gometalinter when saving
+" Run golangci-lint when saving (gometalinter is deprecated)
+let g:go_metalinter_command = 'golangci-lint'
 let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'revive', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'ineffassign']
 
 " Get type info
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
@@ -98,6 +100,32 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+
+" Use gopls for Go language server
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
+
+" Disable vim-go's completion in favor of gopls
+let g:go_code_completion_enabled = 0
+
+" Auto format and organize imports on save
+let g:go_fmt_autosave = 1
+let g:go_imports_autosave = 1
+let g:go_mod_fmt_autosave = 1
+
+" Show diagnostic information in quickfix list
+let g:go_list_type = 'quickfix'
+let g:go_list_height = 10
+
+" Automatically show type info for identifier under cursor
+let g:go_auto_sameids = 1
 
 " Set leader to ,
 let mapleader = ","
