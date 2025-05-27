@@ -31,13 +31,10 @@ First, make sure to install the following packages using your OS's package manag
 * `sudo`
 * `make`
 * `wget`
-* `kubectl`
 
-You can install Go using your package manager or, for more up-to-date version, from https://golang.org/dl/.
+### Optional: Go Development
 
-For Go development, you'll also want to install:
-* `golangci-lint` - Modern Go linter (https://golangci-lint.run/usage/install/)
-* `gopls` - Go language server (installed automatically by vim-go)
+If you want to use the Go development features, you'll need to install Go and related tools.
 
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
 
@@ -52,9 +49,23 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip screen
 ```
 
+#### Optional: Kubernetes Development
+
 Install `kubectl` by following https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/.
 
-Download and install Go from https://golang.org/dl/.
+#### Optional: Go Development
+
+Install Go via command line:
+```
+# Download and install Go (replace version as needed)
+wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+go version
+```
 
 Install Go development tools:
 ```
@@ -82,10 +93,21 @@ Install the prereqs first, devtools will not install them for you:
 
 ```
 brew update && brew upgrade
-brew install nvim git make wget screen kubectl
+brew install nvim git make wget screen
 ```
 
-Download and install Go from https://golang.org/dl/.
+#### Optional: Kubernetes Development
+
+```
+brew install kubectl
+```
+
+#### Optional: Go Development
+
+Install Go:
+```
+brew install go
+```
 
 Install Go development tools:
 ```
