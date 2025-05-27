@@ -13,7 +13,7 @@ I've used devtools on Ubuntu, ArchLinux, and Mac OS X. It may work for other Lin
 Currently the following tools are setup:
 
 * `zsh` with `oh-my-zsh` and the `powerline10k` theme.
-* `nvim` with `gruvbox` theme and support for Golang.
+* `nvim` with `gruvbox` theme and modern Go development support using `vim-go`, `gopls`, and `golangci-lint`.
 * `screen` with some basic changes to its look.
 * `go` with configurable directory structure.
 
@@ -35,6 +35,10 @@ First, make sure to install the following packages using your OS's package manag
 
 You can install Go using your package manager or, for more up-to-date version, from https://golang.org/dl/.
 
+For Go development, you'll also want to install:
+* `golangci-lint` - Modern Go linter (https://golangci-lint.run/usage/install/)
+* `gopls` - Go language server (installed automatically by vim-go)
+
 Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
 
 Instructions are available below for [Ubuntu](#ubuntu) and [Mac OS X](#mac-os-x).
@@ -51,6 +55,14 @@ sudo apt-get install neovim zsh git make wget unzip screen
 Install `kubectl` by following https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/.
 
 Download and install Go from https://golang.org/dl/.
+
+Install Go development tools:
+```
+# Install golangci-lint
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
+
+# gopls will be installed automatically by vim-go on first use
+```
 
 Set default shell to `zsh`:
 
@@ -74,6 +86,17 @@ brew install nvim git make wget screen kubectl
 ```
 
 Download and install Go from https://golang.org/dl/.
+
+Install Go development tools:
+```
+# Install golangci-lint
+brew install golangci-lint
+
+# Or use the curl method:
+# curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
+
+# gopls will be installed automatically by vim-go on first use
+```
 
 Set default shell to `zsh`:
 

@@ -44,9 +44,11 @@ alias ta='task add'
 tm() { task "$1" modify "${@:2}" }
 td() { task "$1" done }
 
-# Kubernetes
-alias k=kubectl
-source <(kubectl completion zsh)
+# Kubernetes (optional - only if kubectl is installed)
+if command -v kubectl &> /dev/null; then
+    alias k=kubectl
+    source <(kubectl completion zsh)
+fi
 
 # Turn off auto-pushd
 unsetopt autopushd
