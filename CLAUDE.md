@@ -9,10 +9,10 @@ This is a personal development environment setup tool that automates the install
 ## Key Commands
 
 ### Setup Commands
-- `make` or `make all` - Install all tools (zsh, nvim, screen, go)
+- `make` or `make all` - Install all tools (zsh, nvim, tmux, go)
 - `make zsh` - Install zsh with oh-my-zsh and powerlevel10k
 - `make nvim` - Configure neovim for Go development
-- `make screen` - Setup GNU screen
+- `make tmux` - Setup tmux with gpakosz/.tmux configuration
 - `make go` - Create Go directory structure
 - `make help` - Show available targets
 
@@ -41,7 +41,7 @@ This is a personal development environment setup tool that automates the install
    - All scripts use `set -e` for error handling
 
 3. **Configuration storage**:
-   - Tool configs are stored in subdirectories (zsh/, nvim/, screen/)
+   - Tool configs are stored in subdirectories (zsh/, nvim/, tmux/)
    - Central configuration in `config` file controls backup behavior and paths
 
 ### Important Configuration
