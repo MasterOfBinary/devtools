@@ -14,7 +14,7 @@ Currently the following tools are setup:
 
 * `zsh` with `oh-my-zsh` and the `powerline10k` theme.
 * `nvim` with `gruvbox` theme and modern Go development support using `vim-go`, `gopls`, and `golangci-lint`.
-* `screen` with some basic changes to its look.
+* `tmux` with the powerful gpakosz/.tmux configuration and powerline font support.
 * `go` with configurable directory structure.
 
 I will probably add more in the future, like Docker.
@@ -23,7 +23,7 @@ I will probably add more in the future, like Docker.
 
 First, make sure to install the following packages using your OS's package manager:
 
-* `screen`
+* `tmux` (version 2.6 or higher)
 * `unzip`
 * `nvim`
 * `zsh`
@@ -46,7 +46,7 @@ Install prereqs first, devtools will not install them for you:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install neovim zsh git make wget unzip screen
+sudo apt-get install neovim zsh git make wget unzip tmux
 ```
 
 #### Optional: Kubernetes Development
@@ -93,7 +93,7 @@ Install the prereqs first, devtools will not install them for you:
 
 ```
 brew update && brew upgrade
-brew install nvim git make wget screen
+brew install nvim git make wget tmux
 ```
 
 #### Optional: Kubernetes Development
@@ -162,14 +162,14 @@ Targets:
     go                             Sets up go directories.
     help                           Shows help.
     nvim                           Sets up nvim with plugins and config files.
-    screen                         Sets up screen.
+    tmux                           Sets up tmux with gpakosz/.tmux configuration.
     zsh                            Installs oh-my-zsh with powerline10k theme and config files.
 ```
 
-For example, to just setup screen, run:
+For example, to just setup tmux, run:
 
 ```
-make screen
+make tmux
 ```
 
 ## Other
