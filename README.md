@@ -19,43 +19,72 @@ Currently the following tools are setup:
 
 I will probably add more in the future, like Docker.
 
-## Install
+## Prerequisites
 
-First, make sure to install the following packages using your OS's package manager:
+Devtools **will not install any system packages** - all required packages must be installed manually before running the scripts. The scripts will check for required packages and provide error messages if they're missing.
 
-* `tmux` (version 2.6 or higher)
-* `unzip`
-* `nvim`
-* `zsh`
-* `git`
-* `sudo`
-* `make`
-* `wget`
+### Required Packages
 
-### Optional: Go Development
+Install these packages using your OS's package manager:
 
-If you want to use the Go development features, you'll need to install Go and related tools.
+* `git` - For cloning repositories and version control
+* `make` - For running the Makefile
+* `wget` - For downloading files
+* `unzip` - For extracting archives
+* `zsh` - Shell that will be configured with oh-my-zsh
+* `nvim` (neovim) - Text editor that will be configured
+* `tmux` (version 2.6 or higher) - Terminal multiplexer
 
-Devtools **will not** run anything that requires superuser privileges, so these need to be setup first. Make sure `zsh` is your default shell (check your OS documentation), but there's no need to run the first start because the `.zshrc` will be overwritten by devtools.
+### Optional Packages
 
-Instructions are available below for [Ubuntu](#ubuntu) and [Mac OS X](#mac-os-x).
+These enhance functionality but aren't required:
+
+* `fzf` - Fuzzy finder for better search in nvim
+* `ripgrep` (`rg`) - Fast grep alternative for better search in nvim
+* `kubectl` - For Kubernetes development (if needed)
+
+### Go Development (Optional)
+
+If you want to use the Go development features:
+
+* `go` - The Go programming language
+* `golangci-lint` - Go linter (will be used by nvim)
+
+Note: `gopls` (Go language server) will be automatically installed by vim-go on first use.
+
+### Important Notes
+
+* Make sure `zsh` is your default shell before running devtools (check your OS documentation)
+* There's no need to run the zsh first-time setup - the `.zshrc` will be overwritten by devtools
+* All packages must be installed with proper permissions (using `sudo` where needed)
+
+Platform-specific installation instructions are available below for [Ubuntu](#ubuntu), [Arch Linux](#arch-linux), and [Mac OS X](#mac-os-x).
 
 ### Ubuntu
 
-Install prereqs first, devtools will not install them for you:
+#### Required packages:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install neovim zsh git make wget unzip tmux
 ```
 
+#### Optional packages for enhanced functionality:
+
+```
+# For better search in nvim
+sudo apt-get install fzf ripgrep
+```
+
 #### Optional: Kubernetes Development
 
-Install `kubectl` by following https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/.
+```
+# Install kubectl by following the official guide:
+# https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+```
 
 #### Optional: Go Development
 
-Install Go via command line:
 ```
 # Download and install Go (replace version as needed)
 wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
@@ -65,14 +94,54 @@ source ~/.bashrc
 
 # Verify installation
 go version
-```
 
-Install Go development tools:
-```
 # Install golangci-lint
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
+```
 
-# gopls will be installed automatically by vim-go on first use
+Set default shell to `zsh`:
+
+```
+chsh -s /bin/zsh
+```
+
+Logout and login to use the new shell. Quit the new shell setup that opens when you first start zsh - shell setup will be overwritten by this application.
+
+Proceed to the section on [Running](#running).
+
+### Arch Linux
+
+#### Required packages:
+
+```
+sudo pacman -Syu
+sudo pacman -S neovim zsh git make wget unzip tmux
+```
+
+#### Optional packages for enhanced functionality:
+
+```
+# For better search in nvim
+sudo pacman -S fzf ripgrep
+```
+
+#### Optional: Kubernetes Development
+
+```
+sudo pacman -S kubectl
+```
+
+#### Optional: Go Development
+
+```
+# Install Go
+sudo pacman -S go
+
+# Install golangci-lint via yay (AUR)
+yay -S golangci-lint-bin
+
+# Alternative: Install via curl
+# curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
 ```
 
 Set default shell to `zsh`:
@@ -87,13 +156,21 @@ Proceed to the section on [Running](#running).
 
 ### Mac OS X
 
-On OS X Catalina or later, `zsh` will already be installed. If it's not, you should be able to install it with Homebrew (`brew install zsh`).
+On OS X Catalina or later, `zsh` will already be installed. If it's not, you can install it with Homebrew.
 
-Install the prereqs first, devtools will not install them for you:
+#### Required packages:
 
 ```
 brew update && brew upgrade
-brew install nvim git make wget tmux
+brew install neovim git make wget unzip tmux
+# Note: zsh is already included in macOS Catalina+
+```
+
+#### Optional packages for enhanced functionality:
+
+```
+# For better search in nvim
+brew install fzf ripgrep
 ```
 
 #### Optional: Kubernetes Development
@@ -104,20 +181,15 @@ brew install kubectl
 
 #### Optional: Go Development
 
-Install Go:
 ```
+# Install Go
 brew install go
-```
 
-Install Go development tools:
-```
 # Install golangci-lint
 brew install golangci-lint
 
-# Or use the curl method:
+# Alternative: Install golangci-lint via curl
 # curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.61.0
-
-# gopls will be installed automatically by vim-go on first use
 ```
 
 Set default shell to `zsh`:
