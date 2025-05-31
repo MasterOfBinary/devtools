@@ -194,6 +194,11 @@ set undodir=~/.config/nvim/undodir
 " Better completion experience
 set completeopt=menuone,noinsert,noselect
 
+" Folding settings - keep everything expanded by default
+set nofoldenable        " Disable folding by default
+set foldmethod=syntax   " Use syntax-based folding when enabled
+set foldlevel=99        " Open all folds by default when folding is enabled
+
 " Markdown settings
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0

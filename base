@@ -12,6 +12,10 @@ function echosuccess {
 	echo -e "\033[32m$1\033[39m"
 }
 
+function echowarn {
+	echo -e "\033[33m$1\033[39m"
+}
+
 function echook {
 	echosuccess "OK"
 }
