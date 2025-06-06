@@ -4,9 +4,10 @@ call plug#begin(stdpath('data') . '/plugged')
 " NERDtree shows a tree view
 Plug 'preservim/nerdtree'
 
-" Vim-airline for a great status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Lualine for a fast, modern status bar
+Plug 'nvim-lualine/lualine.nvim'
+" If you want devicons support (optional but recommended)
+Plug 'nvim-tree/nvim-web-devicons'
 
 " Awesome colour scheme
 Plug 'morhetz/gruvbox'
@@ -17,17 +18,27 @@ Plug 'fatih/vim-go'
 " Plugin for markdown
 Plug 'plasticboy/vim-markdown'
 
+" Additional plugins for better experience
+Plug 'tpope/vim-fugitive'           " Git integration
+Plug 'airblade/vim-gitgutter'       " Git diff in gutter
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
+Plug 'junegunn/fzf.vim'             " FZF vim integration
+Plug 'tpope/vim-commentary'         " Easy commenting
+Plug 'tpope/vim-surround'           " Surround text objects
+Plug 'jiangmiao/auto-pairs'         " Auto close brackets
+Plug 'lukas-reineke/indent-blankline.nvim'  " Show indent guides
+
 " End plugins
 call plug#end()
 
 " Gruvbox stuff
 set bg=dark
 set termguicolors
+colorscheme gruvbox
 
-" For vim-airline
+" For lualine
 set laststatus=2
 set ttimeoutlen=50
-let g:airline_theme='gruvbox'
 
 " Spaces & Tabs
 set tabstop=4       " number of visual spaces per TAB
@@ -133,8 +144,120 @@ let mapleader = ","
 " NERDTree toggle = F2
 map <F2> :NERDTreeToggle<CR>
 
+" FZF mappings for better search
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :Rg<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>h :History<CR>
+
+" Quick window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Better split management
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>s :split<CR>
+
+" GitGutter settings
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+set updatetime=100
+
 " Turn off cursor line on Debian
 set nocursorline
 
 " Set utf-8 encoding
 set encoding=utf-8
+
+" Additional visual improvements
+set relativenumber      " Show relative line numbers
+set scrolloff=8         " Keep 8 lines above/below cursor
+set sidescrolloff=8     " Keep 8 columns left/right of cursor
+set signcolumn=yes      " Always show sign column
+set colorcolumn=100     " Show column at 100 characters
+set list                " Show invisible characters
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+
+" Better search behavior
+set ignorecase          " Case insensitive search
+set smartcase           " Unless capital letters are used
+set inccommand=nosplit  " Live preview of substitutions
+
+" Enable persistent undo
+set undofile
+set undodir=~/.config/nvim/undodir
+
+" Better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Folding settings - keep everything expanded by default
+set nofoldenable        " Disable folding by default
+set foldmethod=syntax   " Use syntax-based folding when enabled
+set foldlevel=99        " Open all folds by default when folding is enabled
+
+" Markdown settings
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
+
+" Configure indent-blankline
+lua << EOF
+require("ibl").setup {
+    indent = {
+        char = "│",
+    },
+    scope = {
+        enabled = true,
+        show_start = true,
+        show_end = false,
+    },
+}
+EOF
+
+" Lualine configuration
+lua << EOF
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+EOF
