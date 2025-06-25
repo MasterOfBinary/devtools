@@ -174,7 +174,7 @@ set nocursorline
 set encoding=utf-8
 
 " Additional visual improvements
-" set relativenumber      " Show relative line numbers (disabled)
+set norelativenumber    " Disable relative line numbers
 set scrolloff=8         " Keep 8 lines above/below cursor
 set sidescrolloff=8     " Keep 8 columns left/right of cursor
 set signcolumn=yes      " Always show sign column
