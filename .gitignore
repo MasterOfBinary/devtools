@@ -1,0 +1,9 @@
+# Custom environment files containing secrets
+zsh/custom-env.zsh
+
+# Backup files created by setup scripts
+*.old.*
+*.backup
+
+# OS-specific files
+.DS_Store

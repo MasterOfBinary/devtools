@@ -1,54 +1,92 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# ~/.zshrc - Minimal zsh configuration with Pure prompt
 
-# Allow local binaries to be added to ~/.local/bin.
+# ------------------------------------------------------------------------------
+# ENVIRONMENT
+# ------------------------------------------------------------------------------
+export EDITOR='nvim'
+export LANG='en_US.UTF-8'
+
+# Local binaries
 export PATH="$HOME/.local/bin:$PATH"
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-plugins=(
-        git
-        last-working-dir
-        golang
-        history
-        sudo
-        z
-        zsh-completions
-)
-
-# oh-my-zsh stuff.
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source $ZSH/oh-my-zsh.sh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# For screen to work properly.
-export SCREENDIR=$HOME/.screen
-
-# Devtools install directory. It will be created by the setup tools.
+# Devtools directory
 export DT_DIR="$HOME/.devtools"
 
-# Source z plugin.
-source "$DT_DIR/z.sh"
+# ------------------------------------------------------------------------------
+# HISTORY
+# ------------------------------------------------------------------------------
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory     # Append to history
+setopt sharehistory      # Share history across all sessions
+setopt incappendhistory  # Append to history file immediately
+setopt hist_ignore_dups  # Don't record dupes in history
+setopt hist_ignore_space # Don't record commands starting with a space
 
-# Set nvim as default editor
-export EDITOR=nvim
+# ------------------------------------------------------------------------------
+# COMPLETIONS
+# ------------------------------------------------------------------------------
+# Add plugins and prompt to fpath
+fpath=(~/.zsh/plugins/zsh-completions/src ~/.zsh/prompt/pure $fpath)
 
-# Some aliases
-alias t='task'
-alias ta='task add'
-tm() { task "$1" modify "${@:2}" }
-td() { task "$1" done }
+# Initialize completions
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+# Only show immediate subdirectories for cd
+zstyle ':completion:*:cd:*' tag-order local-directories
 
-# Kubernetes (optional - only if kubectl is installed)
-if command -v kubectl &> /dev/null; then
-    alias k=kubectl
-    source <(kubectl completion zsh)
+# ------------------------------------------------------------------------------
+# PLUGIN SOURCING
+# ------------------------------------------------------------------------------
+# Source plugins if they exist
+[ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+    source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+    source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Make autosuggestions smarter - prefer history entries that would work in current context
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# ------------------------------------------------------------------------------
+# PROMPT
+# ------------------------------------------------------------------------------
+# Load Pure prompt
+autoload -U promptinit && promptinit
+prompt pure
+
+# ------------------------------------------------------------------------------
+# NAVIGATION
+# ------------------------------------------------------------------------------
+# Initialize zoxide (better z)
+command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
+
+# ------------------------------------------------------------------------------
+# ALIASES
+# ------------------------------------------------------------------------------
+# Source personal aliases
+[ -f ~/.zsh/aliases.zsh ] && source ~/.zsh/aliases.zsh
+
+# ------------------------------------------------------------------------------
+# CUSTOM ENVIRONMENT
+# ------------------------------------------------------------------------------
+# Source custom environment variables (API keys, paths, etc)
+[ -f ~/.zsh/custom-env.zsh ] && source ~/.zsh/custom-env.zsh
+
+# ------------------------------------------------------------------------------
+# LAST WORKING DIRECTORY
+# ------------------------------------------------------------------------------
+if [[ -f ~/.last-working-dir && -d "$(cat ~/.last-working-dir)" ]]; then
+  cd "$(cat ~/.last-working-dir)"
 fi
 
+chpwd() {
+  pwd > ~/.last-working-dir
+}
+
+# ------------------------------------------------------------------------------
+# OPTIONS
+# ------------------------------------------------------------------------------
 # Turn off auto-pushd
 unsetopt autopushd

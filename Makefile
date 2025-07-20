@@ -2,7 +2,7 @@
 all: zsh nvim tmux go
 
 .PHONY: zsh
-zsh: ## Installs oh-my-zsh with powerline10k theme and config files.
+zsh: ## Installs minimal zsh setup with pure prompt and essential plugins.
 	@./zsh.sh
 
 .PHONY: nvim

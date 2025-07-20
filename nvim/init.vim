@@ -9,8 +9,13 @@ Plug 'nvim-lualine/lualine.nvim'
 " If you want devicons support (optional but recommended)
 Plug 'nvim-tree/nvim-web-devicons'
 
-" Awesome colour scheme
-Plug 'morhetz/gruvbox'
+" Color schemes - uncomment the one you want to use
+" Plug 'morhetz/gruvbox'                    " Current: earthy, retro
+Plug 'folke/tokyonight.nvim'              " Modern, vibrant blues/purples
+" Plug 'catppuccin/nvim', { 'as': 'catppuccin' }  " Pastel, multiple flavors
+" Plug 'navarasu/onedark.nvim'              " Atom-inspired, balanced
+" Plug 'rebelot/kanagawa.nvim'              " Japanese-inspired, beautiful
+" Plug 'EdenEast/nightfox.nvim'             " Multiple variants, customizable
 
 " Plugin for golang
 Plug 'fatih/vim-go'
@@ -25,16 +30,26 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Fuzzy finder
 Plug 'junegunn/fzf.vim'             " FZF vim integration
 Plug 'tpope/vim-commentary'         " Easy commenting
 Plug 'tpope/vim-surround'           " Surround text objects
-Plug 'jiangmiao/auto-pairs'         " Auto close brackets
 Plug 'lukas-reineke/indent-blankline.nvim'  " Show indent guides
 
 " End plugins
 call plug#end()
 
-" Gruvbox stuff
+" Color scheme configuration
 set bg=dark
 set termguicolors
-colorscheme gruvbox
+
+" Tokyo Night configuration (comment out and uncomment others as needed)
+let g:tokyonight_style = "night"    " Options: storm, night, day
+let g:tokyonight_transparent = 0
+colorscheme tokyonight
+
+" Alternative configurations:
+" colorscheme gruvbox
+" colorscheme catppuccin-mocha  " Options: latte, frappe, macchiato, mocha
+" colorscheme onedark
+" colorscheme kanagawa
+" colorscheme nightfox          " Options: nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
 
 " For lualine
 set laststatus=2
@@ -223,7 +238,7 @@ lua << EOF
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = 'tokyonight',  -- Options: tokyonight, gruvbox, catppuccin, onedark, kanagawa
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {

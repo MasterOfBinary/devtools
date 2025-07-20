@@ -1,0 +1,43 @@
+# Custom Environment Variables Template
+# Copy this to ~/.zsh/custom-env.zsh and add your own environment variables
+# This file will be automatically sourced by .zshrc
+
+# Example: Development paths
+# export PROJECT_HOME="$HOME/projects"
+# export WORKSPACE="$HOME/workspace"
+
+# Example: Default applications
+# export BROWSER="chrome"
+# export PAGER="less"
+
+# Example: Language/locale settings
+# export LC_ALL="en_US.UTF-8"
+# export TZ="America/New_York"
+
+# Example: Development tools
+# export DOCKER_HOST="unix:///var/run/docker.sock"
+# export COMPOSE_PROJECT_NAME="myproject"
+# export NODE_ENV="development"
+
+# Example: Cloud provider settings
+# export AWS_PROFILE="default"
+# export AWS_REGION="us-east-1"
+# export GCP_PROJECT="my-project-id"
+
+# Example: Custom paths
+# export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+
+# Example: Build flags
+# export CFLAGS="-O2"
+# export LDFLAGS="-L/usr/local/lib"
+
+# Example: API endpoints (non-sensitive)
+# export API_BASE_URL="https://api.example.com"
+# export ENVIRONMENT="development"
+
+# Example: Feature flags
+# export ENABLE_DEBUG="false"
+# export USE_CACHE="true"
+
+# Add your custom environment variables below:

@@ -23,7 +23,13 @@ function echook {
 function backup {
 	if [ "$DT_BACKUP" == "true" ]; then
 		if [ -f "$1" ]; then
-			mv "$1" "$1.old"
+			# Find the next available backup number
+			local num=1
+			while [ -f "$1.old.$num" ]; do
+				((num++))
+			done
+			mv "$1" "$1.old.$num"
+			echoinfo "Backed up $1 to $1.old.$num"
 		fi
 	fi
 }
@@ -37,7 +43,12 @@ function try_clone {
 # Exit if any command fails
 set -e
 
-. ./config
+if [ -f "./config" ]; then
+    . ./config
+else
+    echoerr "Configuration file 'config' not found. Please create it from config.template."
+    exit 1
+fi
 
 if [ -f /etc/os-release ]; then
 	distro=$(cat /etc/os-release | grep "^ID=" | sed 's/ID=//g')

@@ -12,12 +12,42 @@ I've used devtools on Ubuntu, ArchLinux, and Mac OS X. It may work for other Lin
 
 Currently the following tools are setup:
 
-* `zsh` with `oh-my-zsh` and the `powerline10k` theme.
-* `nvim` with `gruvbox` theme and modern Go development support using `vim-go`, `gopls`, and `golangci-lint`.
-* `tmux` with the powerful gpakosz/.tmux configuration and powerline font support.
-* `go` with configurable directory structure.
+* `zsh` with Pure prompt (minimal, fast) and essential plugins (syntax highlighting, autosuggestions)
+* `nvim` with Tokyo Night theme and modern Go development support using `vim-go`, `gopls`, and `golangci-lint`
+* `tmux` with gpakosz/.tmux configuration for powerful features and great defaults
+* `go` with configurable directory structure
 
 I will probably add more in the future, like Docker.
+
+## Key Features to Learn
+
+After installation, here are the 5 most useful features:
+
+1. **Tmux Pane Management** (most useful!)
+   - `Ctrl+b |` - Split vertically
+   - `Ctrl+b -` - Split horizontally
+   - `Ctrl+b h/j/k/l` - Navigate between panes
+   - Mouse support enabled for clicking and scrolling
+
+2. **Quick Directory Navigation**
+   - `z partial-name` - Jump to frequently used directories
+   - Example: `z proj` might jump to `/home/user/projects`
+
+3. **Git Shortcuts**
+   - `gs` - git status
+   - `ga` - git add
+   - `gc "message"` - git commit
+   - `glog` - pretty git log
+
+4. **Essential Aliases**
+   - `l` - List files with details (ls -al)
+   - Command suggestions appear as you type
+   - History search with arrow keys
+
+5. **Vim Go Development**
+   - `,r` - Run current Go file
+   - `,b` - Build project
+   - Auto-format and lint on save
 
 ## Prerequisites
 
@@ -31,7 +61,7 @@ Install these packages using your OS's package manager:
 * `make` - For running the Makefile
 * `wget` - For downloading files
 * `unzip` - For extracting archives
-* `zsh` - Shell that will be configured with oh-my-zsh
+* `zsh` - Shell that will be configured
 * `nvim` (neovim) - Text editor that will be configured
 * `tmux` (version 2.6 or higher) - Terminal multiplexer
 
@@ -42,6 +72,7 @@ These enhance functionality but aren't required:
 * `fzf` - Fuzzy finder for better search in nvim
 * `ripgrep` (`rg`) - Fast grep alternative for better search in nvim
 * `kubectl` - For Kubernetes development (if needed)
+* `zoxide` - Smarter directory jumping (better than `z`)
 
 ### Go Development (Optional)
 
@@ -246,9 +277,17 @@ make tmux
 
 ## Other
 
-I like to set my terminal theme to the gruvbox theme, the same theme I'm using for `nvim`. For iterm2, download the theme at https://github.com/herrbischoff/iterm2-gruvbox and import it.
+### Terminal Themes
 
-You'll also need powerline fonts for your terminal, otherwise some weird symbols will show up. My preference is Mononoki Nerd Font from https://www.nerdfonts.com/.
+The setup uses Tokyo Night theme in nvim. For a consistent look, you can install Tokyo Night for your terminal:
+- **iTerm2**: https://github.com/folke/tokyonight.nvim/tree/main/extras/iterm
+- **Terminal.app**: https://github.com/folke/tokyonight.nvim/tree/main/extras/terminal
+
+### Fonts
+
+The tmux configuration uses powerline symbols. To display them properly, install a powerline-compatible font:
+- **Recommended**: Any Nerd Font from https://www.nerdfonts.com/ (e.g., JetBrainsMono Nerd Font)
+- **Alternative**: Use a terminal with built-in powerline support
 
 Also, I install `screenfetch` when zsh starts up. On Ubuntu, install it as follows:
 

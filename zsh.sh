@@ -1,46 +1,86 @@
 #!/usr/bin/env bash
 
-# Exit if any command fails
-set -e
+# Minimal zsh setup with Pure prompt
+# No oh-my-zsh dependency, just essential plugins
 
+set -e
 . base
 
-echosuccess "Installing zsh..."
+echosuccess "Installing minimal zsh setup with Pure prompt..."
 
-pushd zsh > /dev/null
+# Create zsh directories
+mkdir -p "$HOME/.zsh/plugins"
+mkdir -p "$HOME/.zsh/prompt"
 
-# Install oh-my-zsh
-sh -c "$(wget  -q --show-progress -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# Install Pure prompt
+echoinfo "Installing Pure prompt..."
+if [ ! -d "$HOME/.zsh/prompt/pure" ]; then
+    git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/prompt/pure"
+else
+    echoinfo "Pure prompt already installed"
+fi
 
-# Sometimes ZSH_CUSTOM doesn't seem to exist yet so just assume it's in the default location. There's probably
-# a better way to do it...
+# Install essential plugins
+echoinfo "Installing essential zsh plugins..."
 
-# Install powerlevel10k theme
-# NOTE: don't use try_clone here because it assumes 2 arguments which is bad but I'm too lazy to fix it.
-# Regardless, ohmyzsh would've checked already that .oh-my-zsh doesn't exist.
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+# zsh-completions - extra completions for many tools
+if [ ! -d "$HOME/.zsh/plugins/zsh-completions" ]; then
+    git clone https://github.com/zsh-users/zsh-completions.git "$HOME/.zsh/plugins/zsh-completions"
+else
+    echoinfo "zsh-completions already installed"
+fi
 
-# Install zsh-autosuggestions
-try_clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+# zsh-syntax-highlighting - command syntax highlighting
+if [ ! -d "$HOME/.zsh/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/plugins/zsh-syntax-highlighting"
+else
+    echoinfo "zsh-syntax-highlighting already installed"
+fi
 
-# Install zsh-autosuggestions
-try_clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"
+# zsh-autosuggestions - suggest commands from history
+if [ ! -d "$HOME/.zsh/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.zsh/plugins/zsh-autosuggestions"
+else
+    echoinfo "zsh-autosuggestions already installed"
+fi
 
-# Copy config files
+# Install zoxide (better z) if available via package manager
+echoinfo "Checking for zoxide..."
+if ! command -v zoxide &> /dev/null; then
+    echowarn "zoxide not found. Install it manually for better directory jumping:"
+    case "$distro" in
+        "darwin")
+            echowarn "  brew install zoxide"
+            ;;
+        "ubuntu")
+            echowarn "  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash"
+            ;;
+        "arch")
+            echowarn "  pacman -S zoxide"
+            ;;
+    esac
+else
+    echook "zoxide is already installed"
+fi
+
+# Backup existing configs
 backup "$HOME/.zshrc"
-cp zshrc "$HOME/.zshrc"
-backup "$HOME/.p10k.zsh"
-cp p10k.zsh "$HOME/.p10k.zsh"
+backup "$HOME/.zsh/aliases.zsh"
 
-popd > /dev/null
-
-# Install z
-mkdir -p "$DT_DIR"
-wget  -q --show-progress -O "$DT_DIR/z.sh" https://raw.githubusercontent.com/rupa/z/master/z.sh
+# Copy our minimal configs
+echoinfo "Installing zsh configuration..."
+cp zsh/zshrc "$HOME/.zshrc"
+cp zsh/aliases.zsh "$HOME/.zsh/aliases.zsh"
 
 echook
-
 echo
-echoinfo "Run zsh or log out and log in to see the updated zsh!"
+echoinfo "Minimal zsh setup complete!"
 echo
-
+echoinfo "Features installed:"
+echoinfo "  - Pure prompt (minimal and fast)"
+echoinfo "  - Syntax highlighting"
+echoinfo "  - Auto suggestions"
+echoinfo "  - Extended completions"
+echoinfo "  - Personal aliases in ~/.zsh/aliases.zsh"
+echo
+echoinfo "Run 'zsh' or start a new terminal to use your new shell!"
