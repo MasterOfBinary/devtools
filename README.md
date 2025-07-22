@@ -12,18 +12,44 @@ I've used devtools on Ubuntu, ArchLinux, and Mac OS X. It may work for other Lin
 
 Currently the following tools are setup:
 
-* `zsh` with `oh-my-zsh` and the `powerline10k` theme.
+* `zsh` with minimal configuration (no frameworks) including Pure prompt, syntax highlighting, and autosuggestions.
 * `nvim` with `gruvbox` theme and modern Go development support using `vim-go`, `gopls`, and `golangci-lint`.
-* `screen` with some basic changes to its look.
+* `tmux` with minimal configuration, mouse support, and intuitive key bindings.
 * `go` with configurable directory structure.
 
 I will probably add more in the future, like Docker.
+
+### Minimal Zsh Features
+
+The minimal zsh configuration includes:
+- Command history with deduplication and sharing between sessions
+- Tab completion with case-insensitive menu selection
+- Enhanced ls commands using `eza` with icons and colors
+- Git aliases (gs, ga, gc, gp, gl, gd)
+- [Pure](https://github.com/sindresorhus/pure) prompt (installed automatically)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) for fish-like suggestions
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) for command highlighting
+- [fzf](https://github.com/junegunn/fzf) integration for fuzzy finding (Ctrl+R for history, Ctrl+T for files, Alt+C for directories)
+- Private environment variables support via `~/.zshenv.private` (template provided)
+
+### Minimal Tmux Features
+
+The minimal tmux configuration includes:
+- Mouse support enabled for clicking and scrolling
+- Automatic window renumbering when one is closed
+- Increased scrollback history (10000 lines)
+- No delay when pressing Escape key
+- 256 color support
+- Vi keybindings in copy mode
+- Clean status bar with date/time display
+- Visual pane borders with active pane highlighting
 
 ## Install
 
 First, make sure to install the following packages using your OS's package manager:
 
-* `screen`
+**Required:**
+* `tmux`
 * `unzip`
 * `nvim`
 * `zsh`
@@ -31,6 +57,12 @@ First, make sure to install the following packages using your OS's package manag
 * `sudo`
 * `make`
 * `wget`
+
+**Optional but recommended for enhanced features:**
+* `eza` - modern replacement for ls with icons and colors
+* `fzf` - fuzzy finder for history, files, and directories
+* `fd` - faster alternative to find (used by fzf)
+* `bat` - cat with syntax highlighting (used by fzf for file preview)
 
 ### Optional: Go Development
 
@@ -46,7 +78,10 @@ Install prereqs first, devtools will not install them for you:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install neovim zsh git make wget unzip screen
+sudo apt-get install neovim zsh git make wget unzip tmux
+
+# Optional but recommended
+sudo apt-get install eza fzf fd-find bat
 ```
 
 #### Optional: Kubernetes Development
@@ -93,7 +128,13 @@ Install the prereqs first, devtools will not install them for you:
 
 ```
 brew update && brew upgrade
-brew install nvim git make wget screen
+brew install nvim git make wget tmux
+
+# Optional but recommended
+brew install eza fzf fd bat
+
+# After installing fzf, run its install script for key bindings
+$(brew --prefix)/opt/fzf/install
 ```
 
 #### Optional: Kubernetes Development
@@ -162,21 +203,19 @@ Targets:
     go                             Sets up go directories.
     help                           Shows help.
     nvim                           Sets up nvim with plugins and config files.
-    screen                         Sets up screen.
-    zsh                            Installs oh-my-zsh with powerline10k theme and config files.
+    tmux                           Sets up tmux with minimal configuration.
+    zsh                            Installs minimal zsh configuration (pure shell, no frameworks).
 ```
 
-For example, to just setup screen, run:
+For example, to just setup tmux, run:
 
 ```
-make screen
+make tmux
 ```
 
 ## Other
 
 I like to set my terminal theme to the gruvbox theme, the same theme I'm using for `nvim`. For iterm2, download the theme at https://github.com/herrbischoff/iterm2-gruvbox and import it.
-
-You'll also need powerline fonts for your terminal, otherwise some weird symbols will show up. My preference is Mononoki Nerd Font from https://www.nerdfonts.com/.
 
 Also, I install `screenfetch` when zsh starts up. On Ubuntu, install it as follows:
 

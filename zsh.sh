@@ -3,44 +3,45 @@
 # Exit if any command fails
 set -e
 
-. base
+# Source common functions
+. ./base
 
-echosuccess "Installing zsh..."
+# Back up existing .zshrc
+backup ~/.zshrc
 
-pushd zsh > /dev/null
+# Copy new .zshrc
+echo "Copying new .zshrc"
+cp zsh/zshrc ~/.zshrc
 
-# Install oh-my-zsh
-sh -c "$(wget  -q --show-progress -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# Install zsh plugins
+echo "Installing zsh plugins..."
 
-# Sometimes ZSH_CUSTOM doesn't seem to exist yet so just assume it's in the default location. There's probably
-# a better way to do it...
-
-# Install powerlevel10k theme
-# NOTE: don't use try_clone here because it assumes 2 arguments which is bad but I'm too lazy to fix it.
-# Regardless, ohmyzsh would've checked already that .oh-my-zsh doesn't exist.
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-
-# Install zsh-autosuggestions
-try_clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+# Create zsh plugins directory
+mkdir -p ~/.zsh
 
 # Install zsh-autosuggestions
-try_clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"
+if [ ! -d ~/.zsh/zsh-autosuggestions ]; then
+    echo "Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+fi
 
-# Copy config files
-backup "$HOME/.zshrc"
-cp zshrc "$HOME/.zshrc"
-backup "$HOME/.p10k.zsh"
-cp p10k.zsh "$HOME/.p10k.zsh"
+# Install zsh-syntax-highlighting
+if [ ! -d ~/.zsh/zsh-syntax-highlighting ]; then
+    echo "Installing zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+fi
 
-popd > /dev/null
+# Install pure prompt
+if [ ! -d ~/.zsh/pure ]; then
+    echo "Installing pure prompt..."
+    git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+fi
 
-# Install z
-mkdir -p "$DT_DIR"
-wget  -q --show-progress -O "$DT_DIR/z.sh" https://raw.githubusercontent.com/rupa/z/master/z.sh
+# Create private env file if it doesn't exist
+if [ ! -f ~/.zshenv.private ]; then
+    echo "Creating private environment file from template..."
+    cp zsh/zshenv.private.template ~/.zshenv.private
+    echo "Edit ~/.zshenv.private to add your API keys and tokens"
+fi
 
-echook
-
-echo
-echoinfo "Run zsh or log out and log in to see the updated zsh!"
-echo
-
+echo "Done! Restart your shell or run: source ~/.zshrc"

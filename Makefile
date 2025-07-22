@@ -1,17 +1,17 @@
 .PHONY: all
-all: zsh nvim screen go
+all: zsh nvim tmux go
 
 .PHONY: zsh
-zsh: ## Installs oh-my-zsh with powerline10k theme and config files.
+zsh: ## Installs minimal zsh configuration (pure shell, no frameworks).
 	@./zsh.sh
 
 .PHONY: nvim
 nvim: ## Sets up nvim with plugins and config files.
 	@./nvim.sh
 
-.PHONY: screen
-screen: ## Sets up screen.
-	@./screen.sh
+.PHONY: tmux
+tmux: ## Sets up tmux with minimal configuration.
+	@./tmux.sh
 
 .PHONY: go
 go: ## Sets up go directories.

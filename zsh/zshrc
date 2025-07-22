@@ -1,54 +1,154 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# ------------------------------------------------------------------------------
+# ENVIRONMENT
+# ------------------------------------------------------------------------------
+# Set default editor
+export EDITOR='nvim'
 
-# Allow local binaries to be added to ~/.local/bin.
+# Set language
+export LANG='en_US.UTF-8'
+
+# Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Load private environment variables (API keys, tokens, etc.)
+# This file should NOT be committed to git
+[ -f ~/.zshenv.private ] && source ~/.zshenv.private
 
-plugins=(
-        git
-        last-working-dir
-        golang
-        history
-        sudo
-        z
-        zsh-completions
-)
+# Load Go environment variables if they exist
+[ -f ~/.zsh.go.env ] && source ~/.zsh.go.env
 
-# oh-my-zsh stuff.
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source $ZSH/oh-my-zsh.sh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# ------------------------------------------------------------------------------
+# PROMPT (Pure)
+# ------------------------------------------------------------------------------
+# Add pure prompt to fpath.
+# Make sure to `git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"` first.
+fpath+=($HOME/.zsh/pure)
 
-# For screen to work properly.
-export SCREENDIR=$HOME/.screen
+# Initialize prompt system
+autoload -U promptinit; promptinit
 
-# Devtools install directory. It will be created by the setup tools.
-export DT_DIR="$HOME/.devtools"
+# Load pure prompt
+prompt pure
 
-# Source z plugin.
-source "$DT_DIR/z.sh"
+# ------------------------------------------------------------------------------
+# HISTORY
+# ------------------------------------------------------------------------------
+# History file location
+HISTFILE=~/.zsh_history
 
-# Set nvim as default editor
-export EDITOR=nvim
+# How many commands to keep in memory
+HISTSIZE=5000
 
-# Some aliases
-alias t='task'
-alias ta='task add'
-tm() { task "$1" modify "${@:2}" }
-td() { task "$1" done }
+# How many commands to save to disk
+SAVEHIST=5000
 
-# Kubernetes (optional - only if kubectl is installed)
-if command -v kubectl &> /dev/null; then
-    alias k=kubectl
-    source <(kubectl completion zsh)
+# History options
+setopt appendhistory        # Append to history file
+setopt incappendhistory     # Write to history immediately
+setopt sharehistory         # Share history between sessions
+setopt hist_ignore_dups     # Don't record duplicates
+setopt hist_ignore_space    # Don't record commands starting with space
+
+# ------------------------------------------------------------------------------
+# COMPLETION
+# ------------------------------------------------------------------------------
+# Enable completion
+autoload -U compinit && compinit
+
+# Case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Menu selection for completion
+zstyle ':completion:*' menu select
+
+# ------------------------------------------------------------------------------
+# KEY BINDINGS
+# ------------------------------------------------------------------------------
+# Emacs-style key bindings (default)
+bindkey -e
+
+# Home/End keys
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+# Delete key
+bindkey "^[[3~" delete-char
+
+# Ctrl+Arrow for word movement
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# ------------------------------------------------------------------------------
+# ALIASES
+# ------------------------------------------------------------------------------
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# List files (using eza)
+alias ls="eza --no-filesize --long --color=always --icons=always --no-user"
+alias l='eza -la --icons=always --color=always'
+alias ll='eza -l --icons=always --color=always'
+alias la='eza -a --icons=always --color=always'
+alias lt='eza --tree --level=2 --icons=always --color=always'
+
+# Shortcuts
+alias h='history'
+alias c='clear'
+
+# Editor
+alias v='nvim'
+alias vi='nvim'
+
+# Git basics
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+
+# ------------------------------------------------------------------------------
+# ZSH PLUGINS
+# ------------------------------------------------------------------------------
+# Autosuggestions - suggests commands as you type based on history
+# Install: git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-# Turn off auto-pushd
-unsetopt autopushd
+# Syntax highlighting - colors commands as you type
+# Install: git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# ------------------------------------------------------------------------------
+# FZF - Fuzzy Finder
+# ------------------------------------------------------------------------------
+# Enable fzf key bindings and completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Better fzf defaults
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --info=inline'
+
+# Use fd for faster file finding (if available)
+if command -v fd > /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# Preview files with bat (if available)
+if command -v bat > /dev/null; then
+    export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+fi
+
+# ------------------------------------------------------------------------------
+# OPTIONS
+# ------------------------------------------------------------------------------
+# Don't beep
+setopt no_beep
+
+
+# Don't exit on Ctrl+D
+setopt ignore_eof

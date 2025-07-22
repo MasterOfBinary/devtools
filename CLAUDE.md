@@ -4,15 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is a personal development environment setup tool that automates the installation and configuration of common development tools (zsh, nvim, screen, go) on Linux/Mac systems. It creates a consistent development environment with a focus on Go development.
+This is a personal development environment setup tool that automates the installation and configuration of common development tools (zsh, nvim, tmux, go) on Linux/Mac systems. It creates a consistent development environment with a focus on Go development.
 
 ## Key Commands
 
 ### Setup Commands
-- `make` or `make all` - Install all tools (zsh, nvim, screen, go)
-- `make zsh` - Install zsh with oh-my-zsh and powerlevel10k
+- `make` or `make all` - Install all tools (zsh, nvim, tmux, go)
+- `make zsh` - Install minimal zsh configuration with Pure prompt (no frameworks)
 - `make nvim` - Configure neovim for Go development
-- `make screen` - Setup GNU screen
+- `make tmux` - Setup tmux with minimal configuration
 - `make go` - Create Go directory structure
 - `make help` - Show available targets
 
@@ -41,8 +41,9 @@ This is a personal development environment setup tool that automates the install
    - All scripts use `set -e` for error handling
 
 3. **Configuration storage**:
-   - Tool configs are stored in subdirectories (zsh/, nvim/, screen/)
+   - Tool configs are stored in subdirectories (zsh/, nvim/, tmux/)
    - Central configuration in `config` file controls backup behavior and paths
+   - Private environment template: `zsh/zshenv.private.template`
 
 ### Important Configuration
 - `DT_BACKUP` - Whether to backup existing files (default: true)
@@ -62,6 +63,7 @@ To add support for other distros, modify the case statement in the `base` file a
 ## Development Notes
 
 - Never requires sudo - users must install system packages first
-- kubectl is conditionally loaded in zshrc to prevent errors if not installed
+- The zsh setup creates ~/.zshenv.private from template for API keys and tokens
 - The nvim Go setup requires golangci-lint to be installed separately
 - gopls is automatically installed by vim-go on first use
+- Backup files are created with .old suffix (or .old.N for multiple backups)

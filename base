@@ -19,7 +19,18 @@ function echook {
 function backup {
 	if [ "$DT_BACKUP" == "true" ]; then
 		if [ -f "$1" ]; then
-			mv "$1" "$1.old"
+			# Find the next available backup number
+			if [ ! -f "$1.old" ]; then
+				echoinfo "Backing up $1 to $1.old"
+				mv "$1" "$1.old"
+			else
+				num=1
+				while [ -f "$1.old.$num" ]; do
+					num=$((num + 1))
+				done
+				echoinfo "Backing up $1 to $1.old.$num"
+				mv "$1" "$1.old.$num"
+			fi
 		fi
 	fi
 }
