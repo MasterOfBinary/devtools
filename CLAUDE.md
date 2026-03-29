@@ -10,7 +10,7 @@ This is a personal development environment setup tool that automates the install
 
 ### Setup Commands
 - `make` or `make all` - Install all tools (zsh, nvim, tmux, go)
-- `make zsh` - Install zsh with oh-my-zsh and powerlevel10k
+- `make zsh` - Install zsh with zinit, powerlevel10k, and plugins
 - `make nvim` - Configure neovim for Go development
 - `make tmux` - Setup tmux with gpakosz/.tmux configuration
 - `make go` - Create Go directory structure
