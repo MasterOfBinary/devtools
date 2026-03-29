@@ -10,10 +10,11 @@ echosuccess "Installing zsh..."
 pushd zsh > /dev/null
 
 # Install zinit
-ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
-if [ ! -d "$ZINIT_HOME" ]; then
-	mkdir -p "$(dirname $ZINIT_HOME)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit"
+ZINIT_REPO="$ZINIT_HOME/zinit.git"
+if [ ! -d "$ZINIT_REPO" ]; then
+	mkdir -p "$ZINIT_HOME"
+	git clone --depth=1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_REPO"
 else
 	echoinfo "zinit already installed, skipping."
 fi
