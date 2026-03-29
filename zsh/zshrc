@@ -19,7 +19,6 @@ zinit light romkatv/powerlevel10k
 # Plugins
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-syntax-highlighting
 
 # OMZ plugins via zinit (loads just the plugin, not all of oh-my-zsh)
 zinit snippet OMZP::git
@@ -31,6 +30,9 @@ zinit snippet OMZP::sudo
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
+
+# Must be loaded last so it can highlight commands from all plugins above
+zinit light zsh-users/zsh-syntax-highlighting
 
 # Powerlevel10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
